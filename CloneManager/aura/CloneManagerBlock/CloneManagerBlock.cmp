@@ -1,0 +1,55 @@
+<aura:component>
+    <aura:attribute name="childStructure" type="Object"/>
+    <aura:attribute name="key" type="Decimal"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <div class="nested-box">
+        <div class="nested-box-title">                        
+            <!--div onclick="{!c.toggleNestedBox}" data-target="{!v.key}">
+                <lightning:buttonIcon onclick="{!c.doInit}" aura:id="{!'nestedButton-'+v.key}" iconName="utility:down" class="nested-box-toggle" size="x-small" alternativeText=""/>
+            </div-->
+            
+            <h3>{!v.childStructure.objectLabel}&nbsp;({!v.childStructure.listRecords.length}) <lightning:helptext content="Todos os registros serão clonados."/></h3>                        
+        </div>
+        <div aura:id="nestedBox-2">
+            <table class="nested-box-table">
+                <thead>
+                    <tr>
+                        <aura:iteration items="{!v.childStructure.columnList}" var="column" indexVar="i">
+                            <th>{!column.fieldLabel}</th>
+                        </aura:iteration>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.childStructure.listRecords}" var="record" indexVar="i">  
+                        <tr> 
+                            <aura:iteration items="{!record.fields}" var="field" indexVar="fieldIndex">
+                                <aura:if isTrue="{!field.fieldType == 'STRING' || field.fieldType == 'PICKLIST'}">
+                                	<td>{!field.value}</td>
+                                </aura:if>
+                                <aura:if isTrue="{!field.fieldType == 'DOUBLE'}">
+                                	<td><lightning:formattedNumber value="{!field.value}" maximumFractionDigits="2"/></td>
+                                </aura:if>
+                                <aura:if isTrue="{!field.fieldType == 'CURRENCY'}">
+                                    <td><lightning:formattedNumber value="{!field.value}" style="currency" currencyCode="BRL" currencyDisplayAs="code"/></td>
+                                </aura:if>
+                                <aura:if isTrue="{!field.fieldType == 'PERCENT'}">
+                                    <td><lightning:formattedNumber value="{!field.value}" style="percent" maximumFractionDigits="2"/></td>
+                                </aura:if>
+                                <aura:if isTrue="{!field.fieldType == 'DATE' || field.fieldType == 'DATETIME'}">
+                                    <td><lightning:formattedDateTime value="{!field.value}" year="numeric" month="numeric" day="numeric"/></td>
+                                </aura:if>
+                                <aura:if isTrue="{!field.fieldType == 'BOOLEAN'}">
+                                    <td>
+                                        <input type="checkbox" disabled="true" checked="{!field.value}" />
+                                    </td>
+                                </aura:if>
+                            </aura:iteration>
+                        </tr>
+                    </aura:iteration> 
+                </tbody>
+            </table>
+        </div>
+    </div>    
+</aura:component>

@@ -1,0 +1,55 @@
+.THIS {
+    background: #fff;
+}
+
+.THIS .slds-page-header {
+    padding: 20px;
+    background: #f4f6f9;
+    border-bottom: 1px solid #d0d0d0;
+    border-radius: 4px;
+}
+
+.THIS .nested-box {
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #d0d0d0;
+}
+
+.THIS .closed {
+    display: none;
+}
+
+.THIS .nested-box .nested-box-title {
+    padding: 10px 15px;
+    background: #f4f6f9;
+    font-size: 15px;
+}
+
+.THIS .nested-box-toggle {
+    float: right;
+}
+
+.THIS .nested-box-table {
+    border-top: 1px solid #d0d0d0;
+}
+
+.THIS .nested-box-table tr th {
+    text-transform: uppercase;
+}
+
+.THIS .nested-box-table tr td, .THIS .nested-box-table tr th {
+	border-bottom: 1px solid #D8DDE6;
+    padding: 5px;
+}
+
+.THIS .nested-box-table tr td:first-child, .THIS .nested-box-table tr th:first-child {
+	padding-left: 15px;
+}
+
+.THIS .nested-box-table tr td:last-child, .THIS .nested-box-table tr th:last-child {
+	padding-right: 15px;
+}
+
+.THIS .nested-box-table tr:last-child td {
+	border: 0px;
+}
