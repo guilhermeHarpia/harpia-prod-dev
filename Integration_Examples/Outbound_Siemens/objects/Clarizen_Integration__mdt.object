@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Clarizen_Entity__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Stores the Clarizen entity name for Integration with Salesforce.</inlineHelpText>
+        <label>Clarizen Entity</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Create_Link__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Identify if a Link Object should be generated between this Entity and it&apos;s parent.</inlineHelpText>
+        <label>Create Link</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Integration notes..</inlineHelpText>
+        <label>Description</label>
+        <length>131072</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IsActive__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Link_Endpoint__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Fill this field with a Link Object endpoint if this Entity will generate a Link Object.</inlineHelpText>
+        <label>Link Endpoint</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Order__c</fullName>
+        <description>Field to define in what order the objects should be generated so the new Ids can be provided to objects in bigger numbers. Example: Project in level 1, Document in level 2 because needs ProjectId to be generated.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Order</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Map__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Parent Map</label>
+        <length>30</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Read_Only__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Check it if this Clarizen Entity should be SELECT only (won&apos;t create a new record if a record isn&apos;t found by its key field in Clarizen).</inlineHelpText>
+        <label>Read-Only</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Salesforce_Object__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Stores the Salesforce object name for integration with Clarizen.</inlineHelpText>
+        <label>Salesforce Object</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Send_Allowed_Attachments__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Check this if the object&apos;s attachment checked as &quot;Send to Clarizen&quot; should be sent.</inlineHelpText>
+        <label>Send Allowed Attachments</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Store_Generated_ID__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Whether the generated ID for this Object should be stored in the field Clarizen_ID__c (should be previously created).</inlineHelpText>
+        <label>Store Generated ID</label>
+        <type>Checkbox</type>
+    </fields>
+    <label>Clarizen Integration</label>
+    <listViews>
+        <fullName>Mapped_Objects</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>Salesforce_Object__c</columns>
+        <columns>Clarizen_Entity__c</columns>
+        <columns>Create_Link__c</columns>
+        <columns>Link_Endpoint__c</columns>
+        <columns>IsActive__c</columns>
+        <columns>Read_Only__c</columns>
+        <columns>Send_Allowed_Attachments__c</columns>
+        <columns>Store_Generated_ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Mapped Objects</label>
+        <language>en_US</language>
+    </listViews>
+    <pluralLabel>Clarizen Integrations</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

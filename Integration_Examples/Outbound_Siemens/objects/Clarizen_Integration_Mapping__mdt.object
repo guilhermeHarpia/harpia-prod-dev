@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Defines whether this field should be used in future mappings or not.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Clarizen_Field__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Stores the API name of the field on the Clarizen side.</inlineHelpText>
+        <label>Clarizen Field</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Clarizen_Integration__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Clarizen Integration</label>
+        <referenceTo>Clarizen_Integration__mdt</referenceTo>
+        <relationshipLabel>Clarizen Integration Mappings</relationshipLabel>
+        <relationshipName>Clarizen_Integration_Mappings</relationshipName>
+        <required>true</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IsActive__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Defines whether this field should be used in future mappings or not.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Key__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Check if the Clarizen Field to be used as a Primary Key.</inlineHelpText>
+        <label>Primary Key</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Related_Object__c</fullName>
+        <description>Related Salesforce Object API name if this field is a Lookup.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Related Salesforce Object API name if this field is a Lookup.</inlineHelpText>
+        <label>Related Object</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Salesforce_Field__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Stores Salesforce field API name to be mapped with Clarizen entity field.</inlineHelpText>
+        <label>Salesforce Field</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Clarizen Integration Mapping</label>
+    <listViews>
+        <fullName>Mapped_Fields</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>Salesforce_Field__c</columns>
+        <columns>Clarizen_Field__c</columns>
+        <columns>Primary_Key__c</columns>
+        <columns>IsActive__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Mapped Fields</label>
+        <language>en_US</language>
+    </listViews>
+    <pluralLabel>Clarizen Integration Mappings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>
