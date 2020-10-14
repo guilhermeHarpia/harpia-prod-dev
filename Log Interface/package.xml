@@ -6,13 +6,13 @@
         <members>LogInterfaceHelper</members>
         <members>LogInterfaceItemBO</members>
         <members>LogInterfaceItemDAO</members>
+        <members>LogInterfaceTest</members>
         <name>ApexClass</name>
     </types>
-	 <types>
+	<types>
         <members>LogInterface__c</members>
-        <members>LogInterfaceExpurgo__c</members>
         <members>LogInterfaceItem__c</members>
         <name>CustomObject</name>
     </types>
-    <version>42.0</version>
+    <version>47.0</version>
 </Package>
