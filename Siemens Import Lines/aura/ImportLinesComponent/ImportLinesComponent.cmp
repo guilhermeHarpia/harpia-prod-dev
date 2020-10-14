@@ -1,0 +1,19 @@
+<aura:component controller="ImportLinesController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	
+    <ltng:require scripts="{!$Resource.SheetJS}"/>
+    
+    <aura:attribute name="fileToBeUploaded" type="Object[]"/>
+    <lightning:spinner aura:id="mySpinner" class="slds-hide"/>
+    <lightning:navigation aura:id="documentURL"/>
+    
+    <lightning:card title="Import Quote Lines">
+        <div style="padding-left:10px">
+            <lightning:input aura:id="file-input" type="file"
+                                 files="{!v.fileToBeUploaded}"
+                                 onchange="{!c.onFileUploaded}"
+                                 accept=".xlsx, .xlsm"
+                                 variant="label-hidden"
+                                 name="file" multiple="false"/>
+        </div>
+    </lightning:card>
+</aura:component>
