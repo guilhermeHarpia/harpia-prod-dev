@@ -29,11 +29,13 @@ public class CloneManagerBso{
             
             ChildStructure childStructureAux = new ChildStructure(cm.Child_Object__c, cm.Child_Columns_Fieldset__c);
             childStructureAux.lookupField = cm.Parent_Lookup_Field__c;
+            childStructureAux.apexHandler = cm.Clone_Handler__c;
             relatedRecords = null;
             relatedRecords = retrieveRecords(cm,recordId);
             childStructureAux.listRecords = relatedRecords;
             System.debug('4===>>>'+relatedRecords);
             cloneStructure.childStructures.add(childStructureAux);
+            cloneStructure.apexHandler = cm.Clone_Handler__c;
         }
         system.debug(cloneStructure);
         return JSON.serialize(cloneStructure);
@@ -44,14 +46,11 @@ public class CloneManagerBso{
         system.debug(cloneStructure);
         SObject parentSObject = cloneStructure.parentRecord;
         SObject newParent = parentSObject.clone(false, true, false, false);
-        //TODO: Melhorar lógica de Source
-        if(String.valueOf(dao.reterieveSObjectType(parentSObject.Id)) == 'SBQQ__Quote__c'){
-            newParent.put('SBQQ__Source__c', parentSObject.Id);
-            newParent.put('SBQQ__Primary__c', false);
-            newParent.put('SBQQ__Ordered__c', false);
-            newParent.put('ApprovalStatus__c', null);
-            newParent.put('EHS_Check__c', false);
-            newParent.put('OwnerId', UserInfo.getUserId());
+        
+        if(cloneStructure.apexHandler != null){          
+            Type handlerClass = Type.forName(cloneStructure.apexHandler);
+            CloneManagerInterface CMI = (CloneManagerInterface)handlerClass.newInstance();
+            newParent = CMI.ParentHandler(newParent);
         }
         List<SObject> listChildToInsert = new List<SObject>();
         
@@ -62,37 +61,22 @@ public class CloneManagerBso{
             system.debug(newParent);
             
             for(ChildStructure child : cloneStructure.childStructures){
+                
                 List<Sobject> listSObject = new List<Sobject>();
-                List<SBQQ__QuoteLine__c> listUpdate = new List<SBQQ__QuoteLine__c>();
-                Map<Id, Id> mapOriginalRequired = new Map<Id, Id>();
-                Map<Id, Id> mapOriginalNew = new Map<Id, Id>();
-                if(child.ObjectName == 'SBQQ__QuoteLine__c'){
-                    for(SObject obj : child.listRecords){
-                        mapOriginalRequired.put((Id)obj.get('Id'), (Id)obj.get('SBQQ__RequiredBy__c'));
-                    }
-                }
                 for(SObject obj : child.listRecords){
                     SObject clonedChild = obj.clone(false, true, false, false);
                     clonedChild.put(child.lookupField, newParent.Id);
                     clonedChild.Id = null;
+
+                    if(child.apexHandler != null){          
+                        Type handlerClass = Type.forName(child.apexHandler);
+                        CloneManagerInterface CMI = (CloneManagerInterface)handlerClass.newInstance();
+                        clonedChild = CMI.ChildHandler(clonedChild);
+                    }
+                    
                     listSObject.add(clonedChild);
                 }
                 dynamicUpsert(listSObject, child.ObjectName);
-                if(child.objectName == 'SBQQ__QuoteLine__c'){
-                    for(SObject ql :  listSObject){
-                        system.debug(ql.get('Id'));
-                        mapOriginalNew.put(ql.getCloneSourceId(), (Id)ql.get('Id'));
-                    }
-                    for(SObject newObj :  listSObject){
-                        if(mapOriginalRequired.containsKey(newObj.getCloneSourceId())){
-                            listUpdate.add(new SBQQ__QuoteLine__c(Id = (Id)newObj.get('Id'),
-                                                                  SBQQ__RequiredBy__c=  mapOriginalNew.get(mapOriginalRequired.get(newObj.getCloneSourceId()))));
-                        }
-                    }
-                    if(listUpdate.size() > 0){
-                        update listUpdate;
-                    }
-                }
             }
             
             //system.debug(listChildToInsert);
@@ -116,12 +100,7 @@ public class CloneManagerBso{
             String listType = 'List<' + sObjectType + '>';
             List<SObject> castRecords = (List<SObject>)Type.forName(listType).newInstance();
             castRecords.addAll(records);
-            if(sObjectTypeString == 'SBQQ__QuoteLine__c'){
-                Database.upsert(castRecords);
-            }
-            else{
-                upsert castRecords;
-            }
+            upsert castRecords;
             
         }
     }
@@ -137,7 +116,7 @@ public class CloneManagerBso{
         
         String fields;
         
-        List<String> fieldList;
+        List<String> fieldList = new List<String>();
         
         if(childFieldSet == null){
             fieldList = new List<String>(Schema.getGlobalDescribe().get(childObject).getDescribe().fields.getMap().keySet());
@@ -159,6 +138,7 @@ public class CloneManagerBso{
     public class CloneStructure{
         public String parentObject;
         public SObject parentRecord;
+        public String apexHandler;
         public List<ChildStructure> childStructures;
         
         public CloneStructure(){
@@ -170,6 +150,7 @@ public class CloneManagerBso{
         public String objectName;
         public String objectLabel;
         public String lookupField;
+        public String apexHandler;
         public List<SObject> listRecords;
         public List<FieldSetUtils.CustomFieldDefinition> columnList;
         

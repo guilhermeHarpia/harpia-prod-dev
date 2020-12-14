@@ -38,6 +38,7 @@
                 //console.log('arrayMapKeys',arrayMapKeys);
                 //component.set("v.mapValues", arrayMapKeys);
                 //component.set("v.relatedData", retreiveRelatedData);
+                component.set('v.parentRecordName', cloneStructure.parentRecord.Name);
                 component.set("v.cloneStructure", cloneStructure);
             }
         });

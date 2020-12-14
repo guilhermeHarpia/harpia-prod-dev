@@ -17,7 +17,7 @@
                 <thead>
                     <tr>
                         <aura:iteration items="{!v.childStructure.columnList}" var="column" indexVar="i">
-                            <th>{!column.fieldLabel}</th>
+                            <th style="text-align: center">{!column.fieldLabel}</th>
                         </aura:iteration>
                     </tr>
                 </thead>
@@ -26,22 +26,22 @@
                         <tr> 
                             <aura:iteration items="{!record.fields}" var="field" indexVar="fieldIndex">
                                 <aura:if isTrue="{!field.fieldType == 'STRING' || field.fieldType == 'PICKLIST'}">
-                                	<td>{!field.value}</td>
+                                	<td style="text-align: center">{!field.value}</td>
                                 </aura:if>
                                 <aura:if isTrue="{!field.fieldType == 'DOUBLE'}">
-                                	<td><lightning:formattedNumber value="{!field.value}" maximumFractionDigits="2"/></td>
+                                	<td style="text-align: center"><lightning:formattedNumber value="{!field.value}" maximumFractionDigits="2"/></td>
                                 </aura:if>
                                 <aura:if isTrue="{!field.fieldType == 'CURRENCY'}">
-                                    <td><lightning:formattedNumber value="{!field.value}" style="currency" currencyCode="BRL" currencyDisplayAs="code"/></td>
+                                    <td style="text-align: center"><lightning:formattedNumber value="{!field.value}" style="currency" currencyCode="BRL" currencyDisplayAs="code"/></td>
                                 </aura:if>
                                 <aura:if isTrue="{!field.fieldType == 'PERCENT'}">
-                                    <td><lightning:formattedNumber value="{!field.value}" style="percent" maximumFractionDigits="2"/></td>
+                                    <td style="text-align: center"><lightning:formattedNumber value="{!field.value/100}" style="percent" maximumFractionDigits="2"/></td>
                                 </aura:if>
                                 <aura:if isTrue="{!field.fieldType == 'DATE' || field.fieldType == 'DATETIME'}">
-                                    <td><lightning:formattedDateTime value="{!field.value}" year="numeric" month="numeric" day="numeric"/></td>
+                                    <td style="text-align: center"><lightning:formattedDateTime value="{!field.value}" year="numeric" month="numeric" day="numeric"/></td>
                                 </aura:if>
                                 <aura:if isTrue="{!field.fieldType == 'BOOLEAN'}">
-                                    <td>
+                                    <td style="text-align: center">
                                         <input type="checkbox" disabled="true" checked="{!field.value}" />
                                     </td>
                                 </aura:if>

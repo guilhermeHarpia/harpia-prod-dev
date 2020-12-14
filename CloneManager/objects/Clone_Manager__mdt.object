@@ -34,6 +34,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Clone_Handler__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Clone Handler</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IsActive__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -77,19 +87,6 @@
         <unique>false</unique>
     </fields>
     <label>Clone Manager</label>
-    <listViews>
-        <fullName>All</fullName>
-        <columns>MasterLabel</columns>
-        <columns>DeveloperName</columns>
-        <columns>Parent_Object__c</columns>
-        <columns>Child_Object__c</columns>
-        <columns>Parent_Lookup_Field__c</columns>
-        <columns>Child_Object_FieldSet__c</columns>
-        <columns>Number__c</columns>
-        <columns>IsActive__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
     <pluralLabel>Clone Managers</pluralLabel>
     <visibility>Public</visibility>
 </CustomObject>

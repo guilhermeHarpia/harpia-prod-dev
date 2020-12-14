@@ -1,13 +1,19 @@
 <aura:component controller="CloneManagerController" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome" access="global">
     
     <!-- private attributes -->
-    <aura:attribute name="recordId" type="string" default="a112i0000009kzm"/>
-    <aura:attribute name="parentRecordName" type="string" default="Q-00579"/>    
+    <aura:attribute name="recordId" type="string"/>
+    <aura:attribute name="parentRecordName" type="string"/>    
     <aura:attribute name="mapValues" type="object[]" default=""/>
     <aura:attribute name="cloneStructure" type="Object" default=""/>
     
     <!-- handlers attributes -->
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    
+    <aura:html tag="style">
+        .slds-modal__container {
+        min-width: 75vw;
+        }
+    </aura:html>  
     
     <div class="slds-scope">
         <div class="slds-box">
@@ -20,14 +26,14 @@
                             </div>
                             <div class="slds-media__body">
                                 <p class="slds-text-title_caps slds-line-height_reset">{!v.parentRecordName}</p>
-                                <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="Related Items Preview">Related Items Preview</h1>
+                                <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" title="Related Items Preview">Prévia dos itens Relacionados</h1>
                             </div>
                         </div>              
                     </div>
                     <div class="slds-col slds-no-flex slds-grid slds-align-top">
                         <div class="slds-button-group" role="group">
-                            <lightning:button label="Clone" title="Clone" onclick="{! c.startClone }"/>
-                            <lightning:button label="Cancel" title="Cancel" onclick="{! c.cancelClone }"/>
+                            <lightning:button label="Clonar" title="Clonar" onclick="{! c.startClone }"/>
+                            <lightning:button label="Cancelar" title="Cancelar" onclick="{! c.cancelClone }"/>
                         </div>
                     </div>
                 </div>

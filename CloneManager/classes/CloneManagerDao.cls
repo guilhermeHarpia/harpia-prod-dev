@@ -20,7 +20,8 @@ public class CloneManagerDao{
                 Child_Object_FieldSet__c,
                 Parent_Lookup_Field__c,
                 Parent_Object__c,
-                Child_Columns_Fieldset__c
+                Child_Columns_Fieldset__c,
+                Clone_Handler__c
                 FROM Clone_Manager__mdt 
                 WHERE IsActive__c = true AND
                 Parent_Object__c =:parentObjectAPIName];
@@ -28,6 +29,8 @@ public class CloneManagerDao{
     
     public List<SObject> queryAllData(String fields,String childObject,String parentLookupField,String recordId){
         String finalQuery = 'SELECT ' + fields + ' FROM '+childObject+' WHERE '+parentLookupField+' =:recordId ORDER BY Name ASC';
+        system.debug(finalQuery);
+        system.debug(Database.query(finalQuery));
         return Database.query(finalQuery);
     }
     
